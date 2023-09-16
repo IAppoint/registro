@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAppoint</title>
+    <link rel="icon" href="logoSO.png" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Varela Round', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Estilos para el formulario de preguntas */
+        .preguntas {
+            margin-top: 20px;
+        }
+
+        .preguntas h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .preguntas select,
+        .preguntas label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Estilos para los elementos de formulario */
+        .preguntas select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .preguntas label {
+            font-size: 16px;
+        }
+
+        /* Estilos para los botones del formulario */
+        .preguntas button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .preguntas button:hover {
+            background-color: #555;
+        }
+
+        .logo {
+            width: 250px;
+        }
+
+        .box-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .principal {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            background-image: url('bg1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: #fff;
+            height: 100vh;
+        }
+
+        /* Estilos para el div gancho */
+        .gancho {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .gancho h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .gancho h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .gancho h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos para el botón llamativo */
+        .boton-llamativo {
+            background-color: #FF5722;
+            color: #fff;
+            font-size: 24px;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .boton-llamativo:hover {
+            background-color: #E64A19;
+        }
+
+        .gancho .resaltar {
+            color: orange;
+            text-align: underline;
+        }
+
+        .resaltar2 {
+            color: #96C100;
+        }
+
+        .registro {
+            width: 90%;
+            margin: auto;
+            display: none; /* Inicialmente oculto */
+        }
+
+        /* Estilos para el formulario adicional */
+#formularioAdicional {
+    margin-top: 20px;
+}
+
+#formularioAdicional h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#formulario label {
+    font-size: 16px;
+}
+
+#formulario input[type="text"],
+#formulario input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#formulario button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#formulario button[type="submit"]:hover {
+    background-color: #555;
+}
+
+        .exito {
+    background-color: orange;
+    background-image: none;
+}
+
+        .enviado{
+        text-align: center;
+        padding: 20px;
+    }
+
+
+    </style>
+</head>
+<body>
+    <section class="principal">
+        <div class="box-principal">
+            <div class="box-logo">
+            </div>
+            <div class="gancho">
+                <h1>Metodología I-Sales</h1>
+                <h2>Aumenta <span class="resaltar2">X10</span> tus clientes  <span class="resaltar2"> con 1h de trabajo al día</span> </h2>
+                <h3>Regístrate para ver la metodología</h3>
+                <button class="boton-llamativo" onclick="mostrarFormulario()">Comenzar Ahora</button>
+            </div>
+            <div class="registro">
+                <h2>Responde a las siguientes preguntas</h2>
+                <div class="preguntas">
+                    <h3>¿Has inverido ya en publicidad y qué resultados has tenido?</h3>
+                    <label for="emprendido">Selecciona una opción:</label>
+                    <select id="emprendido" name="emprendido" onchange="mostrarPregunta()">
+                        <option value="seleccionar">Selecciona una opción</option>
+                        <option value="si">Sí</option>
+                        <option value="no">Aún no</option>
+                        <option value="He tenido pocos resultados">He tenido pocos resultados</option>
+                        <option value="He tenido pocos resultados">He tenido buenos resultados</option>
+                    </select>
+
+                    <div id="pregunta2" style="display: none;">
+                        <h3>¿Tienes un equipo de ventas que invierte 1h al día sólo en vender?</h3>
+                        <label for="dineroInternet">Selecciona una opción:</label>
+                        <select id="dineroInternet" name="dineroInternet" onchange="mostrarPregunta2()">
+                            <option value="seleccionar">Selecciona una opción</option>
+                            <option value="Lo hago yo todo como Empresario">Lo hago yo todo como Empresario</option>
+                            <option value="Sí, tengo una secretaría">Sí, tengo una secretaría</option>
+                            <option value="Sí, tengo un equipo de menos de 10 personas">Sí, tengo un equipo de menos de 10 personas</option>
+                            <option value="Sí, tengo un equipo de más de 10 personas">Sí, tengo un equipo de más de 10 personas</option>
+                        </select>
+                    </div>
+                    <div id="formularioAdicional" style="display:none">
+                        <h3>Información adicional</h3>
+                        <form id="formulario"  onsubmit="enviarEmail(event)" >
+                            <label for="nombreCompleto">Nombre completo:</label>
+                            <input type="text" id="nombreCompleto" name="nombreCompleto" required>
+                
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required>
+                
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                    
+                </div>
+                </div>
+            <div class="enviado" style="display: none;">
+                    <h1>¡REGISTRO COMPLETADO ✅</h1>
+                    <p>Revisa tu email y lee nuestros emails porque vamos a brindar un valor incalculable.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+      function mostrarPregunta() {
+    const pregunta2 = document.getElementById("pregunta2");
+    pregunta2.style.display = "block";
+    
+    // Mostrar el formulario al seleccionar una opción en pregunta2
+    const formulario = document.getElementById("formulario");
+    formulario.style.display = "block";
+}
+
+function mostrarPregunta2() {
+    
+    // Mostrar el formulario al seleccionar una opción en pregunta2
+    const formulario2 = document.getElementById("formularioAdicional");
+    formulario2.style.display = "block";
+}
+
+
+function mostrarFormulario() {
+    const gancho = document.querySelector(".gancho");
+    const registro = document.querySelector(".registro");
+
+    gancho.style.display = "none";
+    registro.style.display = "block";
+}
+
+// Función para verificar y establecer el valor de ref en localStorage
+function verificarYCambiarKey() {
+    const ref = "A33461035Y";
+
+    // Obtener el valor actual de ref en localStorage
+    const storedRef = localStorage.getItem("ref");
+
+    // Si el valor en localStorage es diferente, actualizar el valor
+    if (storedRef !== ref) {
+        localStorage.setItem("ref", ref);
+    }
+}
+
+// Función para cambiar el valor de ref y almacenarlo en localStorage
+function cambiarKey() {
+    const ref = "A33461035Y";
+
+    // Cambiar el valor de ref en localStorage
+    localStorage.setItem("ref", ref);
+}
+
+function enviarEmail(event) {
+    event.preventDefault(); // Previene el comportamiento predeterminado del formulario
+
+    // Obtiene los valores seleccionados
+    const respuestaDineroInternet = document.getElementById("dineroInternet").value;
+    const respuestaEmprendido = document.getElementById("emprendido").value; // Nuevo
+    const nombreCompleto = document.getElementById("nombreCompleto").value;
+    const email = document.getElementById("email").value;
+
+    // Configuración de EmailJS (reemplaza con tus propios valores)
+    const serviceID = 'service_47olrky'; // Cambia por tu ID de servicio
+    const templateID = 'template_k4fzhzm'; // Cambia por tu ID de plantilla
+    const userID = 'vaK4oIBbTWuGqq2bE'; // Cambia por tu ID de usuario
+
+    // Envía el correo electrónico utilizando EmailJS
+    emailjs.init(userID);
+    emailjs.send(serviceID, templateID, {
+        respuestaDineroInternet: respuestaDineroInternet,
+        respuestaEmprendido: respuestaEmprendido, // Nuevo
+        nombreCompleto: nombreCompleto,
+        email: email
+    })
+    .then(function(response) {
+        console.log('Correo electrónico enviado con éxito', response);
+         // Después de enviar el correo electrónico con éxito, muestra el div "enviado"
+        const enviadoDiv = document.querySelector(".enviado");
+        const registro = document.querySelector(".registro");
+        enviadoDiv.style.display = "block";
+        registro.style.display = "none";
+
+
+         // Cambia la clase de la sección principal y elimina el fondo de imagen
+        const principal = document.querySelector(".principal");
+        principal.classList.add("exito");
+        
+    }, function(error) {
+        console.error('Error al enviar el correo electrónico', error);
+        // Aquí puedes agregar código para manejar errores en el envío del correo
+    });
+}
+
+
+
+// Verificar y establecer el valor de ref al cargar la página
+window.onload = function() {
+    verificarYCambiarKey();
+};
+
+    </script>
+</body>
+</html>
