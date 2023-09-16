@@ -259,6 +259,9 @@
                 
                             <label for="email">Email:</label>
                             <input type="email" id="email" name="email" required>
+
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" name="telefono" required>
                 
                             <button type="submit">Enviar</button>
                         </form>
@@ -333,6 +336,7 @@ function enviarEmail(event) {
     const respuestaEmprendido = document.getElementById("emprendido").value; // Nuevo
     const nombreCompleto = document.getElementById("nombreCompleto").value;
     const email = document.getElementById("email").value;
+    const telefono = document.getElementById("telefono").value; // Nuevo
 
     // Configuración de EmailJS (reemplaza con tus propios valores)
     const serviceID = 'service_47olrky'; // Cambia por tu ID de servicio
@@ -343,9 +347,10 @@ function enviarEmail(event) {
     emailjs.init(userID);
     emailjs.send(serviceID, templateID, {
         respuestaDineroInternet: respuestaDineroInternet,
-        respuestaEmprendido: respuestaEmprendido, // Nuevo
+        respuestaEmprendido: respuestaEmprendido,
         nombreCompleto: nombreCompleto,
-        email: email
+        email: email,
+        telefono: telefono // Nuevo: Agregar el teléfono
     })
     .then(function(response) {
         console.log('Correo electrónico enviado con éxito', response);
@@ -354,7 +359,6 @@ function enviarEmail(event) {
         const registro = document.querySelector(".registro");
         enviadoDiv.style.display = "block";
         registro.style.display = "none";
-
 
          // Cambia la clase de la sección principal y elimina el fondo de imagen
         const principal = document.querySelector(".principal");
