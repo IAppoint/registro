@@ -215,6 +215,25 @@
     margin: 10px auto;
 }
 
+.recursos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recursos button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.recursos button:hover {
+    background-color: #0056b3;
+}
 
     </style>
 </head>
@@ -277,7 +296,14 @@
                     <div class="gancho2">
                         <h1>I-APPOINT</h1>
                         <h2>Método I-Sales para Aumentar x10 Tus Clientes con 1h al día de trabajo.</h2>
+                        
                         <iframe src="https://www.youtube.com/embed/ldDZPp9hQsc" title="Crea Tu Sistema I-Sales" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <div class="recursos">
+                            <button id="descargarDossier">Dossier Comercial</button>
+                            <button id="verWeb">Ver Web</button>
+                            <button id="reservarVideollamada">Reservar Videollamada</button>
+                        </div>
+
                     </div>
             </div>
         </div>
@@ -378,6 +404,36 @@ function enviarEmail(event) {
 window.onload = function() {
     verificarYCambiarKey();
 };
+
+
+        // Obtener los elementos de los botones
+const descargarDossierBtn = document.getElementById("descargarDossier");
+const verWebBtn = document.getElementById("verWeb");
+const reservarVideollamadaBtn = document.getElementById("reservarVideollamada");
+
+// Agregar event listeners para los botones
+descargarDossierBtn.addEventListener("click", () => {
+    // Aquí puedes agregar código para descargar el archivo al dar clic
+    // Por ejemplo, puedes crear un enlace oculto y simular un clic en él
+    const link = document.createElement("a");
+    link.href = "Dossier_comercial.pdf"; // Reemplaza con la ruta del archivo PDF
+    link.download = "Dossier_Comercial.pdf"; // Nombre del archivo
+    link.style.display = "none";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+});
+
+verWebBtn.addEventListener("click", () => {
+    // Redirigir al usuario a la URL de la web
+    window.location.href = "https://iappoint.net/i-sales";
+});
+
+reservarVideollamadaBtn.addEventListener("click", () => {
+    // Redirigir al usuario a la URL de la videollamada
+    window.location.href = "https://calendly.com/iappoint/30min";
+});
+
 
 
 
